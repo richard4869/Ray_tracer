@@ -1,0 +1,59 @@
+//////////////////////////////////////////////////////////
+Kaixuan Yang
+Final project for CS488
+ID: k42yang
+student number: 20501330
+email: k42yang@uwaterloo.ca
+	ricahrdyang4869@gmail.com
+///////////////////////////////////////////////////////////
+
+LabComputer: gl28.student.cs.uwaterloo.ca
+
+compile:premake4 gmake
+	make
+	./A4 filename
+
+I prepared some lua file in assets to run
+Features
+-----------------
+Photon Mapping [PHOTON_MAPPING MAX_PHOTON]
+Reflection and glossy reflection [Material - reflectivety glossiness]
+Refraction (photon mapping only)[Material refraction refraction_index]
+Soft Shadow (buildin in photon_mapping, implemented in raytracer) [SOFT_SHADOW_RANGE]
+Focus point/plane [FOCUS FOCUS_INDEX]
+Constructive Solid Geometry [Material negative_space]
+Extra primitives (cylinder and cone)
+Volume Scattering (smoke effect)
+Texture Mapping (spherical gr_texture('filename') to set texture, :set_texture() to assign texture)
+
+How to set values?
+--------------------
+[Overall]
+In A4.cpp
+GLOSSY_INDEX -- number of reflection rays
+SOFT_SHADOW_RANGE -- control how soft the shadow is
+TIME_OF_REFLECTION -- how many times the reflection ray bounce between reflective surface
+MAX_PHOTON -- the amount of photons each light source emit
+SEARCH_RANGE -- the range of searching photons
+SEARCH_NUM -- capacity of searched photons each time when you call irradiance_estimate()
+FOCUS -- distance between eye and focus point
+Ray_TRACER -- switch for ray tracer 1-on 0-off
+PHOTON_MAPPING -- switch for photon_mapping 1-on 0-off
+FOCUS_INDEX -- number of focus rays
+
+
+[Material]
+kd, ks, shininess,    (these for ray tracer)
+reflectivity,    (between 0 and 1, control the contribution of reflected colour)
+refraction,   (between 0 and 1, control contribution of refraced colour, [photon mapping only])
+refraction_index,   (the physical refraction index, only between material and air)
+glossiness, (control the glossiness of reflection)
+pd, ps,    (pd<ps<1 control diffusive reflection, specular reflection and absorption when photons hit)
+volume_scattering,   (0 - off, 1 - on, control the smoke effect of the primitive)
+negative_space (for constructive solid geometry)
+
+
+Extra:
+----------------
+1.Photonmap.hpp and Photonmap.cpp from Henrik Wann Jensen-Realistic Image Synthesis Using Photon Mapping-A K Peters (2009) (changed some)
+2.final scene in image folder
